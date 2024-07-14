@@ -1,0 +1,341 @@
+﻿@model House
+@{
+    ViewData["Title"] = "Zone";
+}
+<div class="zone-top">
+    <h1>Пости</h1>     
+    <span id="currentDateTimee"></span>
+</div>
+
+<body>
+    <div class="coordinate-plane">
+        <!-- Zone Elements with IDs for easier referencing -->
+        @*----------ряд 1----------*@
+        <div id="zone-1" class="zone" data-zone-number="1" style="top: 40px; left: 130px; width: 290px; height: 135px;">
+            <span class="zone-number">1</span>
+        </div>
+        <div id="zone-2" class="zone" data-zone-number="2" style="top: 40px; left: 445px; width: 195px; height: 135px;">
+            <span class="zone-number">2</span>
+        </div>
+        <div id="zone-3" class="zone" data-zone-number="3" style="top: 40px; left: 665px; width: 195px; height: 135px;">
+            <span class="zone-number">3</span>
+        </div>
+        <div id="zone-4" class="zone" data-zone-number="4" style="top: 40px; left: 885px; width: 195px; height: 135px;">
+            <span class="zone-number">4</span>
+        </div>
+        <div id="zone-9" class="zone" data-zone-number="9" style="top: 40px; left: 1105px; width: 195px; height: 135px;">
+            <span class="zone-number">9</span>
+        </div>
+        @*----------ряд 2----------*@
+        <div id="zone-8" class="zone" data-zone-number="8" style="top: 265px; left: 100px; width: 320px; height: 135px;">
+            <span class="zone-number">8</span>
+        </div>
+        <div id="zone-7" class="zone" data-zone-number="7" style="top: 265px; left: 445px; width: 195px; height: 135px;">
+            <span class="zone-number">7</span>
+        </div>
+        <div id="zone-6" class="zone" data-zone-number="6" style="top: 265px; left: 665px; width: 195px; height: 135px;">
+            <span class="zone-number">6</span>
+        </div>
+        <div id="zone-5" class="zone" data-zone-number="5" style="top: 265px; left: 885px; width: 195px; height: 135px;">
+            <span class="zone-number">5</span>
+        </div>
+        <div id="zone-10" class="zone" data-zone-number="10" style="top: 265px; left: 1105px; width: 195px; height: 135px;">
+            <span class="zone-number">10</span>
+        </div>
+    </div>
+
+    </div>
+    <!-- Вибір тижня для фільтрації будинків -->
+    <ul class="week-filter">
+        <li>
+            <button id="prevWeekBtn" class="btn btn-secondary">&laquo; Назад</button>
+        </li>
+        <li>
+            <select id="weekSelect" class="form-control"></select>
+        </li>
+        <li>
+            <button id="nextWeekBtn" class="btn btn-secondary">Вперед &raquo;</button>
+        </li>
+    </ul>
+    
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRight">новий будинок</h5>
+            <button type="button" class="offcanvas-closebtn" data-bs-dismiss="offcanvas" aria-label="Close">&times;</button>
+        </div>
+        <div class="offcanvas-body">
+            <form id="houseForm" asp-action="CreateHouse" asp-controller="Zone">
+                <div class="form-group">
+                    <label asp-for="Name">Назва</label>
+                    <input type="text" id="name" asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Zone">Зона</label>
+                    <input type="number" id="zone" asp-for="Zone" min="1" max="10" class="form-control" />
+                    <span asp-validation-for="Zone" class="text-danger"></span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label asp-for="Width">Ширина</label>
+                        <input type="number" id="width" asp-for="Width" class="form-control" />
+                        <span asp-validation-for="Width" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Height">Висота</label>
+                        <input type="number" id="height" asp-for="Height" class="form-control" />
+                        <span asp-validation-for="Height" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Brigade">Бригада</label>
+                    <input type="text" id="brigade" asp-for="Brigade" class="form-control" />
+                    <span asp-validation-for="Brigade" class="text-danger"></span>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label asp-for="StartDate">Дата початку</label>
+                        <input type="date" id="startDate" asp-for="StartDate" class="form-control" required />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="EndDate">Дата завершення</label>
+                        <input type="date" id="endDate" asp-for="EndDate" class="form-control" required />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Стан</label>
+                    <div class="form-row">
+                        <div>
+                            <input type="radio" id="status1" name="status" value="в плані" checked>
+                            <label for="status1">в плані</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="status2" name="status" value="готовий до будівництва">
+                            <label for="status2">готовий до будівництва</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <input type="radio" id="status3" name="status" value="будується">
+                            <label for="status3">будується</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="status4" name="status" value="не будується">
+                            <label for="status4">не будується</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>В межах часу</label>
+                    <div class="form-row">
+                        <div>
+                            <input type="radio" id="time1" name="time" value="в межах часу" checked>
+                            <label for="time1">в межах часу</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="time2" name="time" value="не в межах часу">
+                            <label for="time2">не в межах часу</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="offcanvas-button">додати</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <nav class="timeline-nav">
+        <select id="month-dropdown">
+            <!-- Сюди буде додано опції місяців через JavaScript -->
+        </select>
+    </nav>
+    <div class="master-timeline-container">
+        <div class="timelines timelines-1">
+            <div class="timeline-header-group">
+                @for (int i = 1; i <= 4; i++)
+                {
+                    <div class="timeline-header">
+                        <div class="header-title">
+                            ПОСТ
+                        </div>
+                        <div class="header-number">
+                            @i
+                        </div>
+                    </div>
+                }
+                <div class="timeline-header">
+                    <div class="header-title">
+                        ПОСТ
+                    </div>
+                    <div class="header-number">
+                        9
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-group" id="group-1">
+                @for (int i = 1; i <= 4; i++)
+                {
+                    <div class="timeline-container" id="timeline-container-@i">
+                        <div class="timeline">
+                            <div class="days-row" id="days-row-@i"></div>
+                            <div class="months-row" id="months-row-@i"></div>
+                            <div class="dates-row" id="dates-row-@i"></div>
+                        </div>
+                    </div>
+                }
+                <div class="timeline-container" id="timeline-container-9">
+                    <div class="timeline">
+                        <div class="days-row" id="days-row-9"></div>
+                        <div class="months-row" id="months-row-9"></div>
+                        <div class="dates-row" id="dates-row-9"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="timelines timelines-2">
+            <div class="timeline-header-group">
+                @for (int i = 5; i <= 8; i++)
+                {
+                    <div class="timeline-header">
+                        <div class="header-title">
+                            ПОСТ
+                        </div>
+                        <div class="header-number">
+                            @i
+                        </div>
+                    </div>
+                }
+                <div class="timeline-header">
+                    <div class="header-title">
+                        ПОСТ
+                    </div>
+                    <div class="header-number">
+                        10
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-group" id="group-2">
+                @for (int i = 5; i <= 8; i++)
+                {
+                    <div class="timeline-container" id="timeline-container-@i">
+                        <div class="timeline">
+                            <div class="days-row" id="days-row-@i"></div>
+                            <div class="months-row" id="months-row-@i"></div>
+                            <div class="dates-row" id="dates-row-@i"></div>
+                        </div>
+                    </div>
+                }
+                <div class="timeline-container" id="timeline-container-10">
+                    <div class="timeline">
+                        <div class="days-row" id="days-row-10"></div>
+                        <div class="months-row" id="months-row-10"></div>
+                        <div class="dates-row" id="dates-row-10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offcanvas for House Progress Form -->
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasHouseProgressForm" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasHouseProgressForm">Подія тижня</h5>
+
+            <button type="button" class="offcanvas-closebtn" data-bs-dismiss="offcanvas" aria-label="Close">&times;</button>
+
+        </div>
+        <div class="offcanvas-body">
+            <p class="offcanvas-title" id="weekInfo"></p>
+            <form id="houseProgressForm" asp-action="CreateHouse" asp-controller="Zone">
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div><label>Прогрес будівництва</label></div>
+                        <div><label>Додати мітку</label></div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <input type="radio" id="construction" name="constructionStatus" value="будувався" checked>
+                            <label for="construction">будувався</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="mark1" name="mark" value="мітка 1">
+                            <label for="mark1">мітка 1</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <input type="radio" id="noConstruction" name="constructionStatus" value="простоював">
+                            <label for="noConstruction">простоював</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="mark2" name="mark" value="мітка 2">
+                            <label for="mark2">мітка 2</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <input type="checkbox" id="changeHouseColor" name="changeHouseColor">
+                            <label for="changeHouseColor">Конструкторське рішення</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="mark3" name="mark" value="мітка 3">
+                            <label for="mark3">мітка 3</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div></div>
+                        <div>
+                            <input type="radio" id="mark4" name="mark" value="мітка 4">
+                            <label for="mark4">мітка 4</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Коментар</label>
+                    <textarea id="comment" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Термін будівництва</label>
+                    <div class="form-row">
+                        <div>
+                            <input type="radio" id="inTerms" name="terms" value="в межах" checked>
+                            <label for="inTerms">в межах</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="notInTerms" name="terms" value="не в межах">
+                            <label for="notInTerms">не в межах</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="offcanvas-button">Зберегти зміни</button>
+            </form>
+        </div>
+    </div>
+
+    @section Scripts {
+        <link rel="stylesheet" href="~/css/zone.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/timeline.css"/>
+        <link rel="stylesheet" href="~/css/progress.css" />
+        <script src="~/js/datepeek.js"></script>
+        <script src="~/js/timeline.js"></script>
+        <script type="module" src="~/js/house.js"></script>
+        <script type="module" src="~/js/housetotimeline.js"></script>
+        <script type="module" src="~/Utility/draganddrop.js"></script>
+        <script type="module" src="~/Utility/weekGeneration.js"></script>
+        <script type="module" src="~/Utility/colorise.js"></script>
+        <script type="module" src="~/Utility/housePlacement.js"></script>
+        <script src="~/js/houseprogress.js"></script>
+    }
+</body>
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2024 - ModuleHouseWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
+

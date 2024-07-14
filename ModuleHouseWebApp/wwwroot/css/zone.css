@@ -1,0 +1,198 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.coordinate-plane {
+    position: relative;
+    width: 1500px;
+    height: 465px;
+    background-color: silver;
+    margin: 0 auto;
+    border: 2px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.zone {
+    position: absolute;
+    background-color: lightblue;
+    border-style: ridge;
+    border-width: 4px;
+    border-color: black;
+    cursor: pointer;
+}
+
+.zone-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 124px;
+    font-weight: bold;
+    opacity: 0.5;
+    font-family: 'Cascadia Code'
+}
+/*------------------------------------------САЙДБАР------------------------------------------*/
+.offcanvas {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px 0px 0px 0px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.offcanvas-header .offcanvas-title {
+    font-size: 36px;
+}
+
+    /* Position and style the close button (top right corner) */
+.offcanvas-header .offcanvas-closebtn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 10px;
+    color: black;
+    border: none;
+    background: none;
+}
+
+    /* Form styling */
+
+    .offcanvas-body .form-group {
+        margin-bottom: 10px;
+    }
+
+        .offcanvas-body .form-group label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: black;
+        }
+
+    .offcanvas-body .form-control {
+        background-color: wheat;
+        border: none;
+        border-radius: 6px;
+        padding: 10px;
+    }
+
+        .offcanvas-body .form-control:focus {
+            background-color: #ffd588;
+            border: solid;
+            border-color: black;
+            box-shadow: none;
+        }
+
+    .offcanvas-body .form-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .offcanvas-body .form-row .form-group {
+    flex: 0 0 48%;
+}
+
+.offcanvas-button {
+    margin-top: 20px;
+    background-color: wheat;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    width: 40%;
+}
+/*--------------------------------------WEEK PEEK---------------------------------------------*/
+.week-filter {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 15px 30px;
+    padding-left: 0;
+    list-style: none;
+}
+
+    .week-filter li {
+        margin-right: 6px;
+    }
+
+    .week-filter .btn,
+    .week-filter .form-control {
+        background-color: #add8e6; 
+        border: 1px solid #add8e6;
+        color: #000;
+    }
+
+        .week-filter .btn:hover,
+        .week-filter .form-control:hover {
+            background-color: #87cefa;
+            border-color: #87cefa;
+        }
+
+    .week-filter .form-control {
+        width: auto; 
+    }
+
+/* Стилі для радіо кнопок */
+#status1:checked + label::before {
+    background-color: Turquoise;
+    border-color: black;
+}
+
+#status2:checked + label::before {
+    background-color: yellow;
+    border-color: black;
+}
+
+#status3:checked + label::before {
+    background-color: lime;
+    border-color: black;
+}
+
+#status4:checked + label::before {
+    background-color: lightcoral;
+    border-color: black;
+}
+
+#time1:checked + label::before {
+    background-color: gold;
+    border-color: black;
+}
+
+#time2:checked + label::before {
+    background-color: darkred;
+    border-color: black;
+}
+
+/* Стилізація радіо кнопок */
+input[type="radio"] {
+    display: none;
+}
+
+    input[type="radio"] + label {
+        display: inline-block;
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        input[type="radio"] + label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 1px;
+            background-color: wheat;
+            border: 2px solid #ccc;
+            border-color: black;
+        }
+
+    input[type="radio"]:checked + label::before {
+        border-color: transparent;
+    }
+    

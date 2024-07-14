@@ -1,0 +1,181 @@
+﻿.master-timeline-container {
+    width: 95%;
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.timelines {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+
+.timeline-group {
+    display: flex;
+    width: 95%;
+    overflow-x: scroll;
+    white-space: nowrap;
+    flex-direction: column; 
+    border-right-style: solid;
+    border-right-width: 2px;
+}
+
+.timeline-header-group,
+.timeline-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-header {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    background-color: lightblue;
+    border: solid;
+    border-width: 2px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-color: black; 
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position: sticky;
+}
+
+.header-number{
+    font-family: 'Cascadia Code';
+    font-size: 48px;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+.timeline-container {
+    display: flex;
+    overflow: visible;
+    white-space: nowrap;
+    border: solid;
+    border-width: 1px;
+    border-color: black;
+    border-left-width: 0px;
+    padding-top: 15px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    margin-right: 30px;
+    height: 90px;
+    width: fit-content;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+}
+
+::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 2px;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 70px;
+    border-radius: 6px;
+}
+
+.days-row {
+    order: 2;
+    position: relative;
+    display: flex;
+    overflow-y: visible;
+}
+
+.months-row {
+    order: 1;
+    position: relative;
+    display: flex;
+}
+
+.day {
+    flex-shrink: 0;
+    width: 10px;
+    height: 60px;
+    border-left: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.month {
+    position: absolute;
+    top: -14px;
+    height: 15px;
+    border-bottom: 2px solid red;
+    border-right: 2px solid red;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 10px;
+    line-height: 15px;
+}
+
+.week-marker {
+    border-left: 2px solid darkgrey;
+}
+
+.month-end-marker {
+    border-right: 2px solid red;
+}
+
+.timeline-nav {
+    display: flex; /* Використовуємо flexbox для розміщення дочірніх елементів в рядок */
+    align-items: center; /* Вирівнюємо елементи по центру вертикально */
+    background-color: lightblue; /* Встановлюємо світлий фон */
+    border: 1px solid #ddd; /* Додаємо рамку навколо контейнера */
+    border-radius: 6px; /* Згладжуємо кути контейнера */
+    padding: 10px 20px; /* Встановлюємо внутрішні відступи (10px зверху та знизу, 20px зліва та справа) */
+    margin: 20px 30px; /* Встановлюємо зовнішні відступи (20px зверху та знизу, 30px зліва та справа) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Додаємо тінь для створення ефекту підняття */
+    width: 14%;
+}
+
+    /* Стилізація випадаючого списку */
+    .timeline-nav select {
+        padding: 8px 12px; /* Встановлюємо внутрішні відступи */
+        border: 1px solid #ccc; /* Встановлюємо рамку */
+        border-radius: 4px; /* Згладжуємо кути */
+        background-color: #fff; /* Білий фон */
+        color: #333; /* Темний колір тексту */
+        cursor: pointer; /* Встановлюємо курсор у вигляді руки при наведенні */
+    }
+/* Стилі для тижня-кнопки на таймлайні */
+.week {
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+    .week:hover {
+        filter: brightness(0.7); /* Затемнення існуючого фону */
+    }
+
+    .week .plus-sign {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        color: rgba(128, 128, 128); /* Сірий колір та трохи прозорий */
+        display: none;
+    }
+
+    .week:hover .plus-sign {
+        display: block;
+    }
